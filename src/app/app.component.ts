@@ -12,12 +12,11 @@ export class AppComponent implements OnInit {
 
   constructor(private productsService: CurrencyService) {}
   ngOnInit(): void {
-    this.productsService.getExchangeRates().subscribe((resp) => {
-      if (resp && resp.length > 31) {
-        const USD = resp[24];
-        const EUR = resp[31];
+    this.productsService.getExchangeRates().subscribe((response) => {
+      const USD = response.find((rate) => rate.cc === 'USD');
+      const EUR = response.find((rate) => rate.cc === 'EUR');
+      if (USD && EUR) {
         const rates = [USD, EUR];
-        console.log(rates);
         this.exchangeRates = rates;
       }
     });

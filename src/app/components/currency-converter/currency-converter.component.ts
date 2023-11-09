@@ -14,8 +14,7 @@ export class CurrencyConverterComponent implements OnInit {
 
   ngOnInit() {
     this.currencyService.getExchangeRates().subscribe((data) => {
-      this.exchangeRates = data;
-      // Опрацьовуємо дані і оновлюємо UI
+      // this.exchangeRates = data;
     });
   }
 }

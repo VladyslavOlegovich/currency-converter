@@ -4,7 +4,7 @@
 </div> -->
 
 <header>
-  <div id="currency-rates" *ngFor="let item of data">
+  <div id="currency-rates" *ngFor="let item of exchangeRates">
     <span *ngIf="item.cc === 'USD'" id="usd-rate"
       >USD: {{ item.rate }} - UAH</span
     >

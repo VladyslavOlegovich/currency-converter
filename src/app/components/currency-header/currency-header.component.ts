@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ExchangeRate } from 'src/app/models/exchange-rate';
 
 @Component({
   selector: 'app-currency-header',
@@ -6,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./currency-header.component.css'],
 })
 export class CurrencyHeaderComponent {
-  @Input() data: any;
+  @Input() exchangeRates: ExchangeRate[] = [];
 }
