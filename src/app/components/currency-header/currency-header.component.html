@@ -1,0 +1,15 @@
+<!-- <p>currency-header works!</p>
+<div *ngFor="let item of data">
+  {{ item | json }}
+</div> -->
+
+<header>
+  <div id="currency-rates" *ngFor="let item of data">
+    <span *ngIf="item.cc === 'USD'" id="usd-rate"
+      >USD: {{ item.rate }} - UAH</span
+    >
+    <span *ngIf="item.cc === 'EUR'" id="eur-rate"
+      >EUR:{{ item.rate }} - UAH</span
+    >
+  </div>
+</header>
