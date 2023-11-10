@@ -21,32 +21,35 @@ export class CurrencyConverterComponent implements OnInit {
     this.currencyService.getExchangeRates().subscribe((data) => {
       this.exchangeRates = data;
       this.convertCurrency('first');
-      console.log(this.exchangeRates);
     });
   }
-
-  convertCurrency(lastChanged: 'first' | 'second'): void {
+  private performCurrencyConversion(): number {
     const firstCurrencyRate =
       this.getExchangeRate(this.firstCurrencyType)?.rate || 1;
     const secondCurrencyRate =
       this.getExchangeRate(this.secondCurrencyType)?.rate || 1;
 
-    this.lastChanged = lastChanged;
-
     if (this.lastChanged === 'first' && this.firstCurrencyAmount !== null) {
-      this.secondCurrencyAmount = parseFloat(
-        (
-          (this.firstCurrencyAmount * firstCurrencyRate) /
-          secondCurrencyRate
-        ).toFixed(2)
+      return (
+        (this.firstCurrencyAmount * firstCurrencyRate) / secondCurrencyRate
       );
     } else if (this.secondCurrencyAmount !== null) {
-      this.firstCurrencyAmount = parseFloat(
-        (
-          (this.secondCurrencyAmount * secondCurrencyRate) /
-          firstCurrencyRate
-        ).toFixed(2)
+      return (
+        (this.secondCurrencyAmount * secondCurrencyRate) / firstCurrencyRate
       );
+    }
+    return 0;
+  }
+  private roundToTwoDecimalPlaces(value: number): number {
+    return parseFloat(value.toFixed(2));
+  }
+  convertCurrency(lastChanged: 'first' | 'second'): void {
+    this.lastChanged = lastChanged;
+    const convertedValue = this.performCurrencyConversion();
+    if (this.lastChanged === 'first' && this.firstCurrencyAmount !== null) {
+      this.secondCurrencyAmount = this.roundToTwoDecimalPlaces(convertedValue);
+    } else if (this.secondCurrencyAmount !== null) {
+      this.firstCurrencyAmount = this.roundToTwoDecimalPlaces(convertedValue);
     }
   }
 

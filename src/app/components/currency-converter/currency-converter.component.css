@@ -13,10 +13,6 @@
 }
 
 .currency-input {
-  /* margin-bottom: 25px; */
-  /* display: flex;
-  justify-content: space-around; */
-  /* align-items: center; */
   margin: 10px auto;
 }
 
@@ -50,7 +46,6 @@
   background-color: #e1e1e1;
   margin-right: 8px;
   appearance: none;
-  /* background-image: url("dropdown-icon.png"); */
   background-repeat: no-repeat;
   background-position: right 15px center;
   background-size: 12px;
