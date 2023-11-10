@@ -21,6 +21,7 @@ export class CurrencyConverterComponent implements OnInit {
     this.currencyService.getExchangeRates().subscribe((data) => {
       this.exchangeRates = data;
       this.convertCurrency('first');
+      console.log(this.exchangeRates);
     });
   }
 
@@ -33,11 +34,19 @@ export class CurrencyConverterComponent implements OnInit {
     this.lastChanged = lastChanged;
 
     if (this.lastChanged === 'first' && this.firstCurrencyAmount !== null) {
-      this.secondCurrencyAmount =
-        (this.firstCurrencyAmount * firstCurrencyRate) / secondCurrencyRate;
+      this.secondCurrencyAmount = parseFloat(
+        (
+          (this.firstCurrencyAmount * firstCurrencyRate) /
+          secondCurrencyRate
+        ).toFixed(2)
+      );
     } else if (this.secondCurrencyAmount !== null) {
-      this.firstCurrencyAmount =
-        (this.secondCurrencyAmount * secondCurrencyRate) / firstCurrencyRate;
+      this.firstCurrencyAmount = parseFloat(
+        (
+          (this.secondCurrencyAmount * secondCurrencyRate) /
+          firstCurrencyRate
+        ).toFixed(2)
+      );
     }
   }
 
